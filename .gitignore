@@ -1,0 +1,10 @@
+cricgod/build
+cricgod/gradle
+cricgod/.gradle
+cricgod/.settings
+cricgod/.idea
+cricgod/bin
+.project
+.classpath
+
+
