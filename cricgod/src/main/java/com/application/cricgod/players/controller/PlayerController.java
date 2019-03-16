@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.application.cricgod.players.service.PlayerService;
@@ -24,6 +25,11 @@ public class PlayerController {
 	@RequestMapping(method=RequestMethod.GET, value="/player/{player_id}")
 	public CustomJsonUtil getPlayer(@PathVariable("player_id") String player_id) {
 		return playerService.getPlayer(Integer.parseInt(player_id));
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/player/{player_id}/team")
+	public CustomJsonUtil getTeamByPlayerAndYear(@PathVariable("player_id") String player_id, @RequestParam("year") String year) {
+		return playerService.getTeamByPlayerAndYear(Integer.parseInt(player_id), Integer.parseInt(year));
 	}
 	
 }

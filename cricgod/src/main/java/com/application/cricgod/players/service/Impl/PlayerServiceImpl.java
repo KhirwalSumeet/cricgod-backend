@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.application.cricgod.entity.Player;
+import com.application.cricgod.entity.PlayerTeamMapping;
+import com.application.cricgod.entity.Team;
 import com.application.cricgod.players.service.PlayerService;
 import com.application.cricgod.repository.PlayerRepository;
+import com.application.cricgod.repository.PlayerTeamRepository;
 import com.application.cricgod.util.CustomJsonUtil;
 
 
@@ -16,6 +19,9 @@ public class PlayerServiceImpl implements PlayerService {
 	
 	@Autowired
 	private PlayerRepository playerRepository;
+	
+	@Autowired
+	private PlayerTeamRepository playerTeamRepository;
 	
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
@@ -37,4 +43,17 @@ public class PlayerServiceImpl implements PlayerService {
 		return customJsonResponse;
 	}
 
+	@Override
+	public CustomJsonUtil getTeamByPlayerAndYear(int player_id, int year) {
+		if(playerRepository.getPlayerById(player_id) != null) {
+			Team teamInfo = playerTeamRepository.getTeamByPlayerAndYear(player_id, year);
+			if(teamInfo != null) customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
+			else customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER_TEAM");
+		}
+		else customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		
+		return customJsonResponse;
+	}
+	
+	
 }
