@@ -16,7 +16,7 @@ public class Team {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private int id;
 
 	@Column(name = "name", nullable = false)
     private String name;
@@ -25,14 +25,14 @@ public class Team {
 	  * Gets id
 	  * @return the id
       */
-	public long getId() {
+	public int getId() {
 	    return id;
 	}
 	
 	/**
 	  * Sets id
      */
-	public void setId(long id) {
+	public void setId(int id) {
 	    this.id = id;
 	}
 	
