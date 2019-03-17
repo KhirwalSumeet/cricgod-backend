@@ -36,6 +36,15 @@ create table if not exists stadium_boundary_length(
 );
 
 INSERT INTO stadium_boundary_length VALUES (1, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (2, 66, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (3, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (4, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (5, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (6, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (7, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (8, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (9, 56, 68, 78, 65, 61, 58);
+INSERT INTO stadium_boundary_length VALUES (10, 56, 68, 78, 65, 61, 58);
 
 
 drop table if exists stadium;
@@ -52,15 +61,15 @@ create table if not exists stadium(
 );
 
 INSERT INTO stadium VALUES (1, "M.A. Chidambaram Stadium", "Chennai", "India", 30000, 1);
-INSERT INTO stadium VALUES (2, "Wankhede Stadium", "Chennai", "Mumbai", 35000, 1);
-INSERT INTO stadium VALUES (3, "M. Chinnaswamy Stadium", "Bangalore", "India", 25000, 1);
-INSERT INTO stadium VALUES (4, "IS Bindra Stadium", "Punjab", "India", 30500, 1);
-INSERT INTO stadium VALUES (5, "Feroz Shah Kotla Ground", "Delhi", "India", 29456, 1);
-INSERT INTO stadium VALUES (6, "Swami Mansingh Stadium", "Rajasthan", "India", 24500, 1);
-INSERT INTO stadium VALUES (7, "Eden Gardens", "Chennai", "Kolkata", 31500, 1);
-INSERT INTO stadium VALUES (8, "Rajiv Gandhi Intl. Cricket Stadium", "Hyderabad", "India", 28650, 1);
-INSERT INTO stadium VALUES (9, "Pune Stadium", "Pune", "India", 26880, 1);
-INSERT INTO stadium VALUES (10, "Holkar Cricket Stadium", "Indore", "India", 30000, 1);
+INSERT INTO stadium VALUES (2, "Wankhede Stadium", "Chennai", "Mumbai", 35000, 2);
+INSERT INTO stadium VALUES (3, "M. Chinnaswamy Stadium", "Bangalore", "India", 25000, 3);
+INSERT INTO stadium VALUES (4, "IS Bindra Stadium", "Punjab", "India", 30500, 4);
+INSERT INTO stadium VALUES (5, "Feroz Shah Kotla Ground", "Delhi", "India", 29456, 5);
+INSERT INTO stadium VALUES (6, "Swami Mansingh Stadium", "Rajasthan", "India", 24500, 6);
+INSERT INTO stadium VALUES (7, "Eden Gardens", "Chennai", "Kolkata", 31500, 7);
+INSERT INTO stadium VALUES (8, "Rajiv Gandhi Intl. Cricket Stadium", "Hyderabad", "India", 28650, 8);
+INSERT INTO stadium VALUES (9, "Pune Stadium", "Pune", "India", 26880, 9);
+INSERT INTO stadium VALUES (10, "Holkar Cricket Stadium", "Indore", "India", 30000, 10);
 
 
 drop table if exists sty_mapping;
@@ -187,7 +196,7 @@ create table if not exists toss(
 	id int unsigned auto_increment unique not null,
     caller_id int unsigned not null,
     winner_id int unsigned not null,
-    decision enum('bat','bowl'),
+    decision enum('bat','field'),
     primary key (id),
     foreign key (caller_id) references team(id),
     foreign key (winner_id) references team(id),
