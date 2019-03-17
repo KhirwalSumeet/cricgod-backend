@@ -60,6 +60,7 @@ INSERT INTO stadium VALUES (6, "Swami Mansingh Stadium", "Rajasthan", "India", 2
 INSERT INTO stadium VALUES (7, "Eden Gardens", "Chennai", "Kolkata", 31500, 1);
 INSERT INTO stadium VALUES (8, "Rajiv Gandhi Intl. Cricket Stadium", "Hyderabad", "India", 28650, 1);
 INSERT INTO stadium VALUES (9, "Pune Stadium", "Pune", "India", 26880, 1);
+INSERT INTO stadium VALUES (10, "Holkar Cricket Stadium", "Indore", "India", 30000, 1);
 
 
 drop table if exists sty_mapping;
@@ -75,6 +76,15 @@ create table if not exists sty_mapping(
 );
 
 insert into sty_mapping values(1, 1, 1, 2019);
+insert into sty_mapping values(2, 2, 2, 2019);
+insert into sty_mapping values(3, 3, 3, 2019);
+insert into sty_mapping values(4, 4, 4, 2019);
+insert into sty_mapping values(5, 5, 5, 2019);
+insert into sty_mapping values(6, 6, 6, 2019);
+insert into sty_mapping values(7, 7, 7, 2019);
+insert into sty_mapping values(8, 8, 8, 2019);
+insert into sty_mapping values(9, 1, 9, 2018);
+insert into sty_mapping values(10, 4, 10, 2018);
 
 drop table if exists social_media;
 create table if not exists social_media(
