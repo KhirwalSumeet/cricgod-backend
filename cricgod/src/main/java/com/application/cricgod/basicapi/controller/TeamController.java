@@ -17,29 +17,40 @@ public class TeamController {
 	@Autowired
 	private TeamService teamService;
 	
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/team/all")
 	public CustomJsonUtil getAllTeams() {
 		return teamService.getAllTeams();
 	}
+	
 	
 	@RequestMapping(method=RequestMethod.GET, value="/team/{team_id}")
 	public CustomJsonUtil getTeam(@PathVariable("team_id") String team_id) {
 		return teamService.getTeamById(Integer.parseInt(team_id));
 	}
 	
+	
 	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/squad")
 	public CustomJsonUtil getSquadByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
 		return teamService.getSquadByYear(Integer.parseInt(team_id), Integer.parseInt(year));
 	}
+	
 	
 	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/fixtures")
 	public CustomJsonUtil getFixturesByTeam(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
 		return teamService.getFixturesByTeam(Integer.parseInt(team_id), Integer.parseInt(year));
 	}
 	
+	
 	@RequestMapping(method=RequestMethod.GET, value="/team/{team_id}/homeground")
 	public CustomJsonUtil getHomeGroundByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
 		return teamService.getHomeGroundByYear(Integer.parseInt(team_id), Integer.parseInt(year));
+	}
+	
+	
+	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/social_media")
+	public CustomJsonUtil getSocialMediaByTeam(@PathVariable("team_id") String team_id) {
+		return teamService.getSocialMediaByTeam(Integer.parseInt(team_id));
 	}
 	
 }
