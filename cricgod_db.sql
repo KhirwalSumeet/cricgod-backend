@@ -227,7 +227,7 @@ insert into weather values(1, 30, 32, 2);
 drop table if exists innings;
 create table if not exists innings (
 	id int unsigned unique auto_increment not null,
-    number enum('1','2'),
+    number enum('FIRST','SECOND'),
 	batting_team_id int unsigned not null,
     bowling_team_id int unsigned not null,
     primary key (id),
@@ -236,8 +236,8 @@ create table if not exists innings (
     index iid(batting_team_id, bowling_team_id)
 );    
 
-insert into innings values (1,'1',2,1);
-insert into innings values (2,'2',1,2);
+insert into innings values (1,'FIRST',2,1);
+insert into innings values (2,'SECOND',1,2);
 
 drop table if exists score;
 create table if not exists score(
