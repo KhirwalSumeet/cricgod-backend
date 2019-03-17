@@ -89,17 +89,20 @@ insert into sty_mapping values(10, 4, 10, 2018);
 drop table if exists social_media;
 create table if not exists social_media(
 	id int unsigned auto_increment unique not null,
-    platform varchar(255) not null,
+    platform enum('FACEBOOK','INSTAGRAM', 'TWITTER'),
     primary key (id),
     index smid(id)
 );
 
-insert into social_media values(1, "facebook");
+INSERT INTO social_media VALUES(1, "FACEBOOK");
+INSERT INTO social_media VALUES(2, "INSTAGRAM");
+INSERT INTO social_media VALUES(3, "TWITTER");
+
 
 drop table if exists smdt;
 create table if not exists smdt(
 	id int unsigned auto_increment unique not null,
-    social_media_id int unsigned unique not null,
+    social_media_id int unsigned not null,
     team_id int unsigned not null,
     link varchar(255) not null,
     followers int unsigned not null,
@@ -108,7 +111,20 @@ create table if not exists smdt(
     index smdtid(team_id)
 );
 
-insert into smdt values(1, 1, 1, "https://www.facebook.com/csk/", 2345678);
+INSERT INTO smdt VALUES(1, 1, 1, "https://www.facebook.com/csk/", 2345678);
+INSERT INTO smdt VALUES(2, 2, 1, "https://www.instagram.com/csk/", 2345678);
+INSERT INTO smdt VALUES(3, 3, 1, "https://www.twitter.com/csk/", 2345678);
+INSERT INTO smdt VALUES(4, 1, 2, "https://www.facebook.com/mi/", 2345678);
+INSERT INTO smdt VALUES(5, 2, 2, "https://www.instagram.com/mi/", 2345678);
+INSERT INTO smdt VALUES(6, 3, 2, "https://www.twitter.com/mi/", 2345678);
+INSERT INTO smdt VALUES(7, 1, 3, "https://www.facebook.com/rcb/", 2345678);
+INSERT INTO smdt VALUES(8, 2, 3, "https://www.instagram.com/rcb/", 2345678);
+INSERT INTO smdt VALUES(9, 3, 3, "https://www.twitter.com/rcb/", 2345678);
+INSERT INTO smdt VALUES(10, 1, 4, "https://www.facebook.com/kxip/", 2345678);
+INSERT INTO smdt VALUES(11, 2, 5, "https://www.instagram.com/dc/", 2345678);
+INSERT INTO smdt VALUES(12, 3, 6, "https://www.twitter.com/rr/", 2345678);
+INSERT INTO smdt VALUES(13, 1,7, "https://www.facebook.com/kkr/", 2345678);
+INSERT INTO smdt VALUES(14, 2, 8, "https://www.instagram.com/srh/", 2345678);
 
 
 drop table if exists player;
