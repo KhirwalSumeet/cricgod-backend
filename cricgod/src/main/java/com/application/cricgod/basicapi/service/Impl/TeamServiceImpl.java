@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.application.cricgod.entity.Fixture;
 import com.application.cricgod.entity.Player;
+import com.application.cricgod.entity.Stadium;
 import com.application.cricgod.entity.Team;
 import com.application.cricgod.repository.FixtureRepository;
+import com.application.cricgod.repository.HomeGroundRepository;
 import com.application.cricgod.repository.PlayerTeamRepository;
 import com.application.cricgod.repository.TeamRepository;
 import com.application.cricgod.basicapi.service.TeamService;
@@ -26,6 +28,9 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Autowired
 	private FixtureRepository fixtureRepository;
+	
+	@Autowired
+	private HomeGroundRepository homeGroundRepository;
 	
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
@@ -69,6 +74,18 @@ public class TeamServiceImpl implements TeamService {
 		}
 		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
 		
+		return customJsonResponse;
+	}
+		
+	public CustomJsonUtil getHomeGroundByYear(int team_id, int year) {
+		Team teamInfo = teamRepository.getTeamById(team_id);
+		if(teamInfo != null) {
+			List<Stadium> homeground = homeGroundRepository.getHomeGroundByYear(team_id, year);
+			System.out.println(homeground);
+			if (homeground != null) customJsonResponse.setParams(homeground, "RESP_SUCCESS");
+		}
+		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+				
 		return customJsonResponse;
 	}
 	

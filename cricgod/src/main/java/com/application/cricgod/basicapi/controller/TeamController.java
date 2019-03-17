@@ -37,4 +37,9 @@ public class TeamController {
 		return teamService.getFixturesByTeam(Integer.parseInt(team_id), Integer.parseInt(year));
 	}
 	
+	@RequestMapping(method=RequestMethod.GET, value="/team/{team_id}/homeground")
+	public CustomJsonUtil getHomeGroundByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
+		return teamService.getHomeGroundByYear(Integer.parseInt(team_id), Integer.parseInt(year));
+	}
+	
 }

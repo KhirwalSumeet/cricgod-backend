@@ -8,4 +8,5 @@ public interface TeamService {
 	CustomJsonUtil getTeamById(int team_id);
 	CustomJsonUtil getSquadByYear(int team_id, int year);
 	CustomJsonUtil getFixturesByTeam(int team_id, int year);
+	CustomJsonUtil getHomeGroundByYear(int team_id, int year);
 }
