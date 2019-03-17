@@ -1,4 +1,4 @@
-package com.application.cricgod.players.service.Impl;
+package com.application.cricgod.basicapi.service.Impl;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.application.cricgod.entity.Player;
 import com.application.cricgod.entity.PlayerTeamMapping;
 import com.application.cricgod.entity.Team;
-import com.application.cricgod.players.service.PlayerService;
+import com.application.cricgod.basicapi.service.PlayerService;
 import com.application.cricgod.repository.PlayerRepository;
 import com.application.cricgod.repository.PlayerTeamRepository;
 import com.application.cricgod.util.CustomJsonUtil;

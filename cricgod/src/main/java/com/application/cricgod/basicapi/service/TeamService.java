@@ -1,4 +1,4 @@
-package com.application.cricgod.teams.service;
+package com.application.cricgod.basicapi.service;
 
 import com.application.cricgod.util.CustomJsonUtil;
 

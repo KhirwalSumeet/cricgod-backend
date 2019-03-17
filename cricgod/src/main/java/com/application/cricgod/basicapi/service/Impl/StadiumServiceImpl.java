@@ -1,4 +1,4 @@
-package com.application.cricgod.stadium.service.Impl;
+package com.application.cricgod.basicapi.service.Impl;
 
 import java.util.List;
 
@@ -7,8 +7,9 @@ import org.springframework.stereotype.Service;
 
 import com.application.cricgod.entity.Stadium;
 import com.application.cricgod.repository.StadiumRepository;
-import com.application.cricgod.stadium.service.StadiumService;
+import com.application.cricgod.basicapi.service.StadiumService;
 import com.application.cricgod.util.CustomJsonUtil;
+
 
 @Service
 public class StadiumServiceImpl implements StadiumService {

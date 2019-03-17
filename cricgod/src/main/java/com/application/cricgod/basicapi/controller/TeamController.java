@@ -1,4 +1,4 @@
-package com.application.cricgod.teams.controller;
+package com.application.cricgod.basicapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.application.cricgod.teams.service.TeamService;
+import com.application.cricgod.basicapi.service.TeamService;
 import com.application.cricgod.util.CustomJsonUtil;
+
 
 @RestController
 public class TeamController {
