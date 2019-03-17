@@ -31,7 +31,7 @@ public class TeamServiceImpl implements TeamService {
 	public CustomJsonUtil retrieveTeam(int team_id) {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) customJson.setParams(teamInfo, "RESP_SUCCESS");
-		else customJson.setParams(null, "RESP_FAILURE_TEAM");
+		else customJson.setParams(null, "RESP_TEAM_FAILURE");
 		return customJson;
 	}
 }
