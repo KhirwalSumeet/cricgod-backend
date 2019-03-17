@@ -20,33 +20,34 @@ public class Team {
 
 	@Column(name = "name", nullable = false)
     private String name;
-	
-	@Column(name = "nick_name", nullable = false)
-    private String nick_name;
-	
-	
+
+	/**
+	  * Gets id
+	  * @return the id
+      */
 	public int getId() {
 	    return id;
 	}
 	
+	/**
+	  * Sets id
+     */
 	public void setId(int id) {
 	    this.id = id;
 	}
 	
+	/**
+	  * Gets name
+	  * @return name
+     */
 	public String getName() {
 	    return name;
 	}
 	
+	/**
+	  * Sets name
+    */
 	public void setName(String name) {
 	    this.name = name;
 	}
-
-	public String getNick_name() {
-		return nick_name;
-	}
-
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
-	}
-	
 }
