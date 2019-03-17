@@ -31,4 +31,10 @@ public class TeamController {
 	public CustomJsonUtil getSquadByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
 		return teamService.getSquadByYear(Integer.parseInt(team_id), Integer.parseInt(year));
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/fixtures")
+	public CustomJsonUtil getFixturesByTeam(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
+		return teamService.getFixturesByTeam(Integer.parseInt(team_id), Integer.parseInt(year));
+	}
+	
 }

@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.application.cricgod.entity.Fixture;
 import com.application.cricgod.entity.Player;
 import com.application.cricgod.entity.Team;
+import com.application.cricgod.repository.FixtureRepository;
 import com.application.cricgod.repository.PlayerTeamRepository;
 import com.application.cricgod.repository.TeamRepository;
 import com.application.cricgod.basicapi.service.TeamService;
@@ -21,6 +23,9 @@ public class TeamServiceImpl implements TeamService {
 	
 	@Autowired
 	private PlayerTeamRepository playerTeamRepository;
+	
+	@Autowired
+	private FixtureRepository fixtureRepository;
 	
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
@@ -54,6 +59,19 @@ public class TeamServiceImpl implements TeamService {
 		
 		return customJsonResponse;
 	}
+
+	@Override
+	public CustomJsonUtil getFixturesByTeam(int team_id, int year) {
+		Team teamInfo = teamRepository.getTeamById(team_id);
+		if(teamInfo != null) {
+			List<Fixture> fixtures = fixtureRepository.getAllFixturesByTeam(team_id, year);
+			if(fixtures != null) customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
+		}
+		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		
+		return customJsonResponse;
+	}
+	
 	
 	
 }
