@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import com.application.cricgod.enums.SocialMediaPlatformEnum;
 
 
-
 @Entity
 @Table(name="social_media")
 public class SocialMedia {

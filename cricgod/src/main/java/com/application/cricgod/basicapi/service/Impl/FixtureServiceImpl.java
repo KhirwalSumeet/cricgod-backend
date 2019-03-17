@@ -23,15 +23,25 @@ public class FixtureServiceImpl implements FixtureService {
 	@Override
 	public CustomJsonUtil getAllFixturesByYear(int year) {
 		List<Fixture> fixtures = fixtureRepository.getAllFixturesByYear(year);
-		if(fixtures != null) customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
+		if(fixtures != null) {
+			customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_FIXTURE");
+		}
+		
 		return customJsonResponse;
 	}
 
 	@Override
 	public CustomJsonUtil getFixtureById(int fixture_id) {
 		Fixture fixture = fixtureRepository.getFixtureById(fixture_id);
-		if(fixture != null) customJsonResponse.setParams(fixture, "RESP_SUCCESS");
-		else customJsonResponse.setParams(null, "RESP_FAILURE_FIXTURE");
+		if(fixture != null) {
+			customJsonResponse.setParams(fixture, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_FIXTURE");
+		}
 		
 		return customJsonResponse;
 	}

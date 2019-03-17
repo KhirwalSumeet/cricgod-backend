@@ -23,16 +23,26 @@ public class SocialMediaServiceImpl implements SocialMediaService {
 	@Override
 	public CustomJsonUtil getAllSocialMedia() {
 		List<SocialMedia> socialMedia = socialMediaRepository.findAll();
-		if(socialMedia != null) customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
+		if(socialMedia != null) {
+			customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA");
+		}
 		
 		return customJsonResponse;
 	}
-
+	
+	
 	@Override
 	public CustomJsonUtil getSocialMediaById(int social_media_id) {
 		SocialMedia socialMedia = socialMediaRepository.getSocialMediaById(social_media_id);
-		if(socialMedia != null) customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
-		else customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA");
+		if(socialMedia != null) {
+			customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA");
+		}
 		
 		return customJsonResponse;
 	}

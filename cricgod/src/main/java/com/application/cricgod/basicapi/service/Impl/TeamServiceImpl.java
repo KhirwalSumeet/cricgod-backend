@@ -44,7 +44,12 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public CustomJsonUtil getAllTeams() {
 		List<Team> teams = teamRepository.findAll();
-		if(teams != null) customJsonResponse.setParams(teams, "RESP_SUCCESS");
+		if(teams != null) {
+			customJsonResponse.setParams(teams, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 		
 		return customJsonResponse;
 	}
@@ -53,21 +58,32 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	public CustomJsonUtil getTeamById(int team_id) {
 		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
-		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		if(teamInfo != null) {
+			customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 		
 		return customJsonResponse;
 	}
+	
 	
 	@Override
 	public CustomJsonUtil getSquadByYear(int team_id, int year) {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) {
 			List<Player> squad = playerTeamRepository.getSquadByYear(team_id, year);
-			System.out.println(squad);
-			if(squad != null) customJsonResponse.setParams(squad, "RESP_SUCCESS");
+			if(squad != null) {
+				customJsonResponse.setParams(squad, "RESP_SUCCESS");
+			}
+			else {
+				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_SQUAD");
+			}
 		}
-		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 		
 		return customJsonResponse;
 	}
@@ -78,9 +94,16 @@ public class TeamServiceImpl implements TeamService {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) {
 			List<Fixture> fixtures = fixtureRepository.getAllFixturesByTeam(team_id, year);
-			if(fixtures != null) customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
+			if(fixtures != null) {
+				customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
+			}
+			else {
+				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_FIXTURES");
+			}
 		}
-		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 		
 		return customJsonResponse;
 	}
@@ -91,9 +114,16 @@ public class TeamServiceImpl implements TeamService {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) {
 			List<Stadium> homeground = homeGroundRepository.getHomeGroundByYear(team_id, year);
-			if (homeground != null) customJsonResponse.setParams(homeground, "RESP_SUCCESS");
+			if (homeground != null) {
+				customJsonResponse.setParams(homeground, "RESP_SUCCESS");
+			}
+			else {
+				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_HOMEGROUND");
+			}
 		}
-		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 				
 		return customJsonResponse;
 	}
@@ -104,10 +134,16 @@ public class TeamServiceImpl implements TeamService {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) {
 			List<SocialMediaTeamMapping> socialMedia = socialMediaTeamRepositroy.getSocialMediaByTeam(team_id);
-			if(socialMedia != null) customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
-			else customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA_TEAM");
+			if(socialMedia != null) {
+				customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
+			}
+			else {
+				customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA_TEAM");
+			}
 		}
-		else customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		}
 		
 		return customJsonResponse;
 	}

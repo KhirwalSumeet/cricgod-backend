@@ -16,7 +16,6 @@ import com.application.cricgod.enums.BowlStyleEnum;
 import com.application.cricgod.enums.RoleEnum;
 
 
-
 @Entity
 @Table(name="player")
 public class Player {

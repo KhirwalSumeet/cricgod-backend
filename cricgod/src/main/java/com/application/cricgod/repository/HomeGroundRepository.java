@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.application.cricgod.entity.HomeGroundMapping;
 import com.application.cricgod.entity.Stadium;
-import com.application.cricgod.entity.Team;
+
 
 public interface HomeGroundRepository extends JpaRepository<HomeGroundMapping, Integer>{
 	

@@ -17,4 +17,5 @@ public interface PlayerTeamRepository extends JpaRepository<PlayerTeamMapping, I
 	
 	@Query("select map.team from PlayerTeamMapping map where map.player.id=?1 and map.year=?2")
 	Team getTeamByPlayerAndYear(int player_id, int year);
+	
 }

@@ -26,31 +26,49 @@ public class PlayerServiceImpl implements PlayerService {
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
 	
+	
 	@Override
 	public CustomJsonUtil getAllPlayers() {
 		List<Player> players = playerRepository.findAll();
-		if(players != null) customJsonResponse.setParams(players, "RESP_SUCCESS");
+		if(players != null) {
+			customJsonResponse.setParams(players, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		}
 		
 		return customJsonResponse;
 	}
-
+	
+	
 	@Override
 	public CustomJsonUtil getPlayer(int player_id) {
 		Player player = playerRepository.getPlayerById(player_id);
-		if(player != null) customJsonResponse.setParams(player, "RESP_SUCCESS");
-		else customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		if(player != null) {
+			customJsonResponse.setParams(player, "RESP_SUCCESS");
+		}
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		}
 		
 		return customJsonResponse;
 	}
-
+	
+	
 	@Override
 	public CustomJsonUtil getTeamByPlayerAndYear(int player_id, int year) {
 		if(playerRepository.getPlayerById(player_id) != null) {
 			Team teamInfo = playerTeamRepository.getTeamByPlayerAndYear(player_id, year);
-			if(teamInfo != null) customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
-			else customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER_TEAM");
+			if(teamInfo != null) {
+				customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
+			}
+			else {
+				customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER_TEAM");
+			}
 		}
-		else customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		else {
+			customJsonResponse.setParams(null, "RESP_FAILURE_PLAYER");
+		}
 		
 		return customJsonResponse;
 	}
