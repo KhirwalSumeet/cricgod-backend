@@ -2,6 +2,7 @@ package com.application.cricgod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "BMD")
+@Table(name = "bmd")
 public class BallMatchMapping {
 	
 	@Id
@@ -19,20 +20,20 @@ public class BallMatchMapping {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="match_details_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="match_details_id")
 	private MatchDetails matchDetails;
 	
-	@ManyToOne
-	@JoinColumn(name="innings_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="innings_id")
 	private Innings innings;
 	
-	@ManyToOne
-	@JoinColumn(name="wicket_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="wicket_id")
 	private Wicket wicket;
 	
-	@ManyToOne
-	@JoinColumn(name="batsman_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="batsman_id")
 	private Player batsman;
 	
 	@Column(name="balls", nullable=false)

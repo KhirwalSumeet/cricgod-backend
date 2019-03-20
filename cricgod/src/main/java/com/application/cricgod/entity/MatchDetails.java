@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,24 +22,24 @@ public class MatchDetails {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="mtm_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="mtm_id")
 	private MatchTeamMapping teamsDetails;
 	
-	@ManyToOne
-	@JoinColumn(name="toss_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="toss_id")
 	private Toss toss;
 	
-	@ManyToOne
-	@JoinColumn(name="stadium_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="stadium_id")
 	private Stadium stadium;
 	
-	@ManyToOne
-	@JoinColumn(name="weather_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="weather_id")
 	private Weather weather;
 	
-	@ManyToOne
-	@JoinColumn(name="outcome_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="outcome_id")
 	private Outcome outcome;
 	
 	@Column(name="date")

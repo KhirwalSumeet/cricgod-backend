@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="satdium_boundary_length")
+@Table(name="stadium_boundary_length")
 public class StadiumBoundaryLength {
 	
 	@Id

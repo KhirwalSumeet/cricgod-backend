@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,20 +28,20 @@ public class Wicket {
 	@Enumerated(EnumType.STRING)
 	private WicketTypeEnum wicketType;
 	
-	@ManyToOne
-	@JoinColumn(name="match_details_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="match_details_id")
 	private MatchDetails matchDetails;
 	
-	@ManyToOne
-	@JoinColumn(name="bowler_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="bowler_id")
 	private Player bowler;
 	
-	@ManyToOne
-	@JoinColumn(name="fielder_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="fielder_id")
 	private Player fielder;
 	
-	@ManyToOne
-	@JoinColumn(name="player_out_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="player_out_id")
 	private Player playerOut;
 
 	public int getId() {

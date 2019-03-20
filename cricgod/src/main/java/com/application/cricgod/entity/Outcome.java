@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,14 +24,16 @@ public class Outcome {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="mom_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="mom_id")
 	private Player manOfMatch; 
 	
-	@Column(name="innings1_score_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="innings1_score_id")
 	private Score inn1Score;
 	
-	@Column(name="innings2_score_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="innings2_score_id")
 	private Score inn2Score;
 	
 	@Column(name="isDL", nullable=false)

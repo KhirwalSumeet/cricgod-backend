@@ -2,6 +2,7 @@ package com.application.cricgod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -19,16 +20,16 @@ public class Overs {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="match_details_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="match_details_id")
 	private MatchDetails matchDetails;
 	
-	@ManyToOne
-	@JoinColumn(name="innings_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="innings_id")
 	private Innings innings;
 	
-	@ManyToOne
-	@JoinColumn(name="bowler_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="bowler_id")
 	private Player bowler;
 	
 	@Column(name="runs", nullable=false)

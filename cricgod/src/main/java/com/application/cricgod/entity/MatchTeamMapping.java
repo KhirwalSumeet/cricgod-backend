@@ -2,6 +2,7 @@ package com.application.cricgod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table
+@Table(name = "mtm")
 public class MatchTeamMapping {
 	
 	@Id
@@ -19,28 +20,28 @@ public class MatchTeamMapping {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="team1_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team1_id")
 	private Team team1;
 	
-	@ManyToOne
-	@JoinColumn(name="team2_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team2_id")
 	private Team team2;
 	
-	@ManyToOne
-	@JoinColumn(name="team1_captain_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team1_captain_id")
 	private Player team1Captain;
 	
-	@ManyToOne
-	@JoinColumn(name="team2_captain_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team2_captain_id")
 	private Player team2Captain;
 	
-	@ManyToOne
-	@JoinColumn(name="team1_vcaptain_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team1_vcaptain_id")
 	private Player team1ViceCaptain;
 	
-	@ManyToOne
-	@JoinColumn(name="team2_vcaptain_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="team2_vcaptain_id")
 	private Player team2ViceCaptain;
 
 	public int getId() {

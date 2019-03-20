@@ -2,6 +2,7 @@ package com.application.cricgod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,12 +19,12 @@ public class FixtureMatchMapping {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="fixture_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="fixture_id")
 	private Fixture fixture;
 	
-	@ManyToOne
-	@JoinColumn(name="match_details_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="match_details_id")
 	private MatchDetails matchDetails;
 
 	public int getId() {

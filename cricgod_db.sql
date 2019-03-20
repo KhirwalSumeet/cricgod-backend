@@ -466,13 +466,14 @@ create table if not exists ball(
 	foreign key (non_striker_id) references player(id),
 	foreign key (overs_id) references overs(id),
 	foreign key (innings_id) references innings(id),
+	foreign key (wicket_id) references wicket(id),
 	index bid(id, bowler_id, striker_id)
 );
 
-insert into ball values(1, 1, 4, 1, 4, 2, 2, 0, 6, 'none' , false, true);
 
-drop table if exists BMD;
-create table if not exists BMD(
+
+drop table if exists bmd;
+create table if not exists bmd(
 	id int unsigned auto_increment unique not null,
 	match_details_id int unsigned not null,
 	innings_id int unsigned not null,
@@ -492,7 +493,7 @@ create table if not exists BMD(
 	foreign key (batsman_id) references player(id),
 	foreign key (innings_id) references innings(id),
 	foreign key (wicket_id) references wicket(id),
-	index BMDid(id)
+	index bmdid(id)
 );
-insert into BMD values (1,1,1,1,1,16,27,5,5,2,0,3,0,1);
-insert into BMD values (2,1,2,2,2,54,116,25,20,20,0,4,0,5);
+insert into bmd values (1,1,1,1,1,16,27,5,5,2,0,3,0,1);
+insert into bmd values (2,1,2,2,2,54,116,25,20,20,0,4,0,5);

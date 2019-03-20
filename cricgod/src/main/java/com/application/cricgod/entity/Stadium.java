@@ -2,6 +2,7 @@ package com.application.cricgod.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Stadium {
 	@Column(name = "capacity", nullable = false)
 	private int capacity;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="stadium_boundary_length_id")
 	private StadiumBoundaryLength stadiumBoundaryLength;
 

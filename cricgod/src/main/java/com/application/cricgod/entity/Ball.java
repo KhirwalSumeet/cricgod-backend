@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,29 +24,33 @@ public class Ball {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name="match_details_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="match_details_id")
 	private MatchDetails matchDetails;
 	
-	@ManyToOne
-	@JoinColumn(name="bowler_id", nullable=false)
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="bowler_id")
 	private Player bowler;
 	
-	@ManyToOne
-	@JoinColumn(name="striker_id", nullable=false)
-	private Player striker_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="striker_id")
+	private Player striker;
 	
-	@ManyToOne
-	@JoinColumn(name="overs_id", nullable=false)
-	private Player overs_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="non_striker_id")
+	private Player nonStriker;
 	
-	@ManyToOne
-	@JoinColumn(name="innings_id", nullable=false)
-	private Player innings_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="overs_id")
+	private Overs over;
 	
-	@ManyToOne
-	@JoinColumn(name="wicket_id", nullable=false)
-	private Player wicket_id;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="innings_id")
+	private Innings innings;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name="wicket_id")
+	private Wicket wicket;
 	
 	@Column(name="runs", nullable=false)
 	private int runs;
@@ -84,36 +89,44 @@ public class Ball {
 		this.bowler = bowler;
 	}
 
-	public Player getStriker_id() {
-		return striker_id;
+	public Player getStriker() {
+		return striker;
 	}
 
-	public void setStriker_id(Player striker_id) {
-		this.striker_id = striker_id;
+	public void setStriker(Player striker) {
+		this.striker = striker;
 	}
 
-	public Player getOvers_id() {
-		return overs_id;
+	public Player getNonStriker() {
+		return nonStriker;
 	}
 
-	public void setOvers_id(Player overs_id) {
-		this.overs_id = overs_id;
+	public void setNonStriker(Player nonStriker) {
+		this.nonStriker = nonStriker;
 	}
 
-	public Player getInnings_id() {
-		return innings_id;
+	public Overs getOver() {
+		return over;
 	}
 
-	public void setInnings_id(Player innings_id) {
-		this.innings_id = innings_id;
+	public void setOver(Overs over) {
+		this.over = over;
 	}
 
-	public Player getWicket_id() {
-		return wicket_id;
+	public Innings getInnings() {
+		return innings;
 	}
 
-	public void setWicket_id(Player wicket_id) {
-		this.wicket_id = wicket_id;
+	public void setInnings(Innings innings) {
+		this.innings = innings;
+	}
+
+	public Wicket getWicket() {
+		return wicket;
+	}
+
+	public void setWicket(Wicket wicket) {
+		this.wicket = wicket;
 	}
 
 	public int getRuns() {
