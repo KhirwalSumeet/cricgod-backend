@@ -30,11 +30,11 @@ public class Player {
 	
 	@Column(name="batting_style")
 	@Enumerated(EnumType.STRING)
-	private BatStyleEnum batting_style;
+	private BatStyleEnum battingStyle;
 	
 	@Column(name="bowling_style")
 	@Enumerated(EnumType.STRING)
-	private BowlStyleEnum bowling_style;
+	private BowlStyleEnum bowlingStyle;
 	
 	@Column(name="role")
 	@Enumerated(EnumType.STRING)
@@ -63,20 +63,20 @@ public class Player {
 		this.name = name;
 	}
 
-	public BatStyleEnum getBatting_style() {
-		return batting_style;
+	public BatStyleEnum getBattingStyle() {
+		return battingStyle;
 	}
 
-	public void setBatting_style(BatStyleEnum batting_style) {
-		this.batting_style = batting_style;
+	public void setBattingStyle(BatStyleEnum battingStyle) {
+		this.battingStyle = battingStyle;
 	}
 
-	public BowlStyleEnum getBowling_style() {
-		return bowling_style;
+	public BowlStyleEnum getBowlingStyle() {
+		return bowlingStyle;
 	}
 
-	public void setBowling_style(BowlStyleEnum bowling_style) {
-		this.bowling_style = bowling_style;
+	public void setBowlingStyle(BowlStyleEnum bowlingStyle) {
+		this.bowlingStyle = bowlingStyle;
 	}
 
 	public RoleEnum getRole() {

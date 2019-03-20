@@ -25,11 +25,11 @@ public class Innings {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="batting_team_id", insertable=false, updatable=false)
-	private Team batting_team;
+	private Team battingTeam;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="bowling_team_id", insertable=false, updatable=false)
-	private Team bowling_team;
+	private Team bowlingTeam;
 	
 	@Column(name="decision")
 	@Enumerated(EnumType.STRING)
@@ -43,20 +43,20 @@ public class Innings {
 		this.id = id;
 	}
 
-	public Team getBatting_team() {
-		return batting_team;
+	public Team getBattingTeam() {
+		return battingTeam;
 	}
 
-	public void setBatting_team(Team batting_team) {
-		this.batting_team = batting_team;
+	public void setBattingTeam(Team battingTeam) {
+		this.battingTeam = battingTeam;
 	}
 
-	public Team getBowling_team() {
-		return bowling_team;
+	public Team getBowlingTeam() {
+		return bowlingTeam;
 	}
 
-	public void setBowling_team(Team bowling_team) {
-		this.bowling_team = bowling_team;
+	public void setBowlingTeam(Team bowlingTeam) {
+		this.bowlingTeam = bowlingTeam;
 	}
 
 	public InningsNumberEnum getDecision() {

@@ -26,7 +26,7 @@ public class Fixture {
 	private int year;
 	
 	@Column(name="date_time")
-	private LocalDateTime date_time;
+	private LocalDateTime dateTime;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="stadium_id")
@@ -57,12 +57,12 @@ public class Fixture {
 		this.year = year;
 	}
 
-	public LocalDateTime getDate_time() {
-		return date_time;
+	public LocalDateTime getDateTime() {
+		return dateTime;
 	}
 
-	public void setDate_time(LocalDateTime date_time) {
-		this.date_time = date_time;
+	public void setDateTime(LocalDateTime dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	public Stadium getStadium() {

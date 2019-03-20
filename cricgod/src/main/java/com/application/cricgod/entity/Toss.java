@@ -25,11 +25,11 @@ public class Toss {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="caller_id", insertable=false, updatable=false)
-	private Team caller_team;
+	private Team callerTeam;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="winner_id", insertable=false, updatable=false)
-	private Team winner_team;
+	private Team winnerTeam;
 	
 	@Column(name="decision")
 	@Enumerated(EnumType.STRING)
@@ -42,21 +42,21 @@ public class Toss {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	public Team getCaller_team() {
-		return caller_team;
+	
+	public Team getCallerTeam() {
+		return callerTeam;
 	}
 
-	public void setCaller_team(Team caller_team) {
-		this.caller_team = caller_team;
+	public void setCallerTeam(Team callerTeam) {
+		this.callerTeam = callerTeam;
 	}
 
-	public Team getWinner_team() {
-		return winner_team;
+	public Team getWinnerTeam() {
+		return winnerTeam;
 	}
 
-	public void setWinner_team(Team winner_team) {
-		this.winner_team = winner_team;
+	public void setWinnerTeam(Team winnerTeam) {
+		this.winnerTeam = winnerTeam;
 	}
 
 	public TossDecisionEnum getDecision() {

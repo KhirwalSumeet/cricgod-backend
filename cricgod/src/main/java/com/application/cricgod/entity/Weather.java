@@ -26,7 +26,7 @@ public class Weather {
 	private int humidity;
 	
 	@Column(name = "rainfall_chances", nullable = false)
-	private int rainfall_chances;
+	private int rainfallChances;
 
 	public int getId() {
 		return id;
@@ -52,11 +52,11 @@ public class Weather {
 		this.humidity = humidity;
 	}
 
-	public int getRainfall_chances() {
-		return rainfall_chances;
+	public int getRainfallChances() {
+		return rainfallChances;
 	}
 
-	public void setRainfall_chances(int rainfall_chances) {
-		this.rainfall_chances = rainfall_chances;
+	public void setRainfallChances(int rainfallChances) {
+		this.rainfallChances = rainfallChances;
 	}
 }

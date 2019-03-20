@@ -24,7 +24,7 @@ public class Team {
     private String name;
 	
 	@Column(name = "nick_name", nullable = false)
-    private String nick_name;
+    private String nickName;
 	
 	
 	public int getId() {
@@ -43,12 +43,12 @@ public class Team {
 	    this.name = name;
 	}
 
-	public String getNick_name() {
-		return nick_name;
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setNick_name(String nick_name) {
-		this.nick_name = nick_name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 	
 }

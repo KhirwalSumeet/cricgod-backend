@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -29,8 +31,9 @@ public class Stadium {
 	@Column(name = "capacity", nullable = false)
 	private int capacity;
 	
-	@Column(name = "stadium_boundary_length_id", nullable = false)
-	private int stadium_boundary_length_id;
+	@OneToOne
+	@JoinColumn(name="stadium_boundary_length_id")
+	private StadiumBoundaryLength stadiumBoundaryLength;
 
 	public int getId() {
 		return id;
@@ -72,13 +75,13 @@ public class Stadium {
 		this.capacity = capacity;
 	}
 
-	public int getStadium_boundary_length_id() {
-		return stadium_boundary_length_id;
+	public StadiumBoundaryLength getStadiumBoundaryLength() {
+		return stadiumBoundaryLength;
 	}
 
-	public void setStadium_boundary_length_id(int stadium_boundary_length_id) {
-		this.stadium_boundary_length_id = stadium_boundary_length_id;
+	public void setStadiumBoundaryLength(StadiumBoundaryLength stadiumBoundaryLength) {
+		this.stadiumBoundaryLength = stadiumBoundaryLength;
 	}
 	
-
+	
 }

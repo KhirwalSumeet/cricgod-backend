@@ -23,7 +23,7 @@ public class SocialMedia {
 	
 	@Column(name="platform", nullable=false)
 	@Enumerated(EnumType.STRING)
-	private SocialMediaPlatformEnum sm_platform;
+	private SocialMediaPlatformEnum socialMediaPlatform;
 	
 	
 	public int getId() {
@@ -34,12 +34,12 @@ public class SocialMedia {
 		this.id = id;
 	}
 
-	public SocialMediaPlatformEnum getPlatform() {
-		return sm_platform;
+	public SocialMediaPlatformEnum getSocialMediaPlatform() {
+		return socialMediaPlatform;
 	}
 
-	public void setPlatform(SocialMediaPlatformEnum sm_platform) {
-		this.sm_platform = sm_platform;
+	public void setSocialMediaPlatform(SocialMediaPlatformEnum socialMediaPlatform) {
+		this.socialMediaPlatform = socialMediaPlatform;
 	}
 	
 }

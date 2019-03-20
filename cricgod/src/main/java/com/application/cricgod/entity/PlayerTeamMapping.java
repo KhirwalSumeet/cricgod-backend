@@ -32,7 +32,7 @@ public class PlayerTeamMapping {
 	private int year;
 	
 	@Column(name="auction_value")
-	private int auction_value;
+	private int auctionValue;
 	
 	
 	public int getId() {
@@ -67,12 +67,12 @@ public class PlayerTeamMapping {
 		this.year = year;
 	}
 
-	public int getAuction_value() {
-		return auction_value;
+	public int getAuctionValue() {
+		return auctionValue;
 	}
 
-	public void setAuction_value(int auction_value) {
-		this.auction_value = auction_value;
+	public void setAuctionValue(int auctionValue) {
+		this.auctionValue = auctionValue;
 	}
 	
 }
