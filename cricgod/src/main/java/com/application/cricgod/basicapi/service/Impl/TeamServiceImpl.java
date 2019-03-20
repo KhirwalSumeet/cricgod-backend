@@ -13,7 +13,7 @@ import com.application.cricgod.entity.Team;
 import com.application.cricgod.repository.FixtureRepository;
 import com.application.cricgod.repository.HomeGroundRepository;
 import com.application.cricgod.repository.PlayerTeamRepository;
-import com.application.cricgod.repository.SocialMediaTeamRepositroy;
+import com.application.cricgod.repository.SocialMediaTeamRepository;
 import com.application.cricgod.repository.TeamRepository;
 import com.application.cricgod.basicapi.service.TeamService;
 import com.application.cricgod.util.CustomJsonUtil;
@@ -35,7 +35,7 @@ public class TeamServiceImpl implements TeamService {
 	private HomeGroundRepository homeGroundRepository;
 	
 	@Autowired
-	private SocialMediaTeamRepositroy socialMediaTeamRepositroy;
+	private SocialMediaTeamRepository socialMediaTeamRepository;
 	
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
@@ -133,7 +133,7 @@ public class TeamServiceImpl implements TeamService {
 	public CustomJsonUtil getSocialMediaByTeam(int team_id) {
 		Team teamInfo = teamRepository.getTeamById(team_id);
 		if(teamInfo != null) {
-			List<SocialMediaTeamMapping> socialMedia = socialMediaTeamRepositroy.getSocialMediaByTeam(team_id);
+			List<SocialMediaTeamMapping> socialMedia = socialMediaTeamRepository.getSocialMediaByTeam(team_id);
 			if(socialMedia != null) {
 				customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
 			}
