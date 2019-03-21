@@ -2,11 +2,13 @@ package com.application.cricgod.basicapi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.application.cricgod.basicapi.beans.TeamDetailsRequestBean;
+import com.application.cricgod.basicapi.beans.TeamRequestFlagsBean;
 import com.application.cricgod.basicapi.service.TeamService;
 import com.application.cricgod.util.CustomJsonUtil;
 
@@ -18,39 +20,55 @@ public class TeamController {
 	private TeamService teamService;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/team/all")
-	public CustomJsonUtil getAllTeams() {
-		return teamService.getAllTeams();
+	/**
+	 * Retrieves specified details of the team of a particular year
+	 * @param request : Request bean containing all the flags of required team details and year
+	 * 
+	 * @return CustomJsonUtil : Custom json response of requested details of a all teams in the given year
+	 */
+	@RequestMapping(method=RequestMethod.POST, value="/team/all")
+	public CustomJsonUtil getAllTeamDetails(@RequestBody TeamDetailsRequestBean request) {
+		TeamRequestFlagsBean teamRequestFlags = setTeamRequestFlags(request);
+		int year = Integer.parseInt(request.getYear());
+		
+		return teamService.getAllTeamDetails(teamRequestFlags, year);
 	}
 	
 	
-	@RequestMapping(method=RequestMethod.GET, value="/team/{team_id}")
-	public CustomJsonUtil getTeam(@PathVariable("team_id") String team_id) {
-		return teamService.getTeamById(Integer.parseInt(team_id));
+	/**
+	 * Retrieves specified details of the team of a particular year
+	 * @param team_id : Id of the team to be fetched
+	 * @param request : Request bean containing all the flags of required team details and year
+	 * 
+	 * @return CustomJsonUtil : Custom json response of requested details of a particular team in the given year
+	 */
+	@RequestMapping(method=RequestMethod.POST, value="/team/{team_id}")
+	public CustomJsonUtil getTeamDetails(@PathVariable("team_id") int team_id, @RequestBody TeamDetailsRequestBean request) {
+		TeamRequestFlagsBean teamRequestFlags = setTeamRequestFlags(request);
+		int year = Integer.parseInt(request.getYear());
+		
+		return teamService.getTeamDetails(team_id, teamRequestFlags, year);
 	}
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/squad")
-	public CustomJsonUtil getSquadByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
-		return teamService.getSquadByYear(Integer.parseInt(team_id), Integer.parseInt(year));
+	/**
+	 * This method sets all the flags from request body to TeamRequestFlagsBean
+	 * @param teamDetailsRequest : Contains all the flags of required team details
+	 * 
+	 * @return TeamRequestFlagsBean : Set of boolean flags of required team details
+	 */
+	public TeamRequestFlagsBean setTeamRequestFlags(TeamDetailsRequestBean teamDetailsRequest) {
+		TeamRequestFlagsBean teamRequestFlags = new TeamRequestFlagsBean();
+		
+		teamRequestFlags.setTeamNameFlag(Boolean.valueOf(teamDetailsRequest.getTeamNameFlag()));
+		teamRequestFlags.setSquadDetailsFlag(Boolean.valueOf(teamDetailsRequest.getSquadDetailsFlag()));
+		teamRequestFlags.setFixtureDetailsFlag(Boolean.valueOf(teamDetailsRequest.getFixtureDetailsFlag()));
+		teamRequestFlags.setSocialMediaDetailsFlag(Boolean.valueOf(teamDetailsRequest.getSocialMediaDetailsFlag()));
+		teamRequestFlags.setHomeGroundDetailsFlag(Boolean.valueOf(teamDetailsRequest.getHomeGroundDetailsFlag()));
+		teamRequestFlags.setOwnerDetailsFlag(Boolean.valueOf(teamDetailsRequest.getOwnerDetailsFlag()));
+		
+		return teamRequestFlags;
 	}
 	
-	
-	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/fixtures")
-	public CustomJsonUtil getFixturesByTeam(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
-		return teamService.getFixturesByTeam(Integer.parseInt(team_id), Integer.parseInt(year));
-	}
-	
-	
-	@RequestMapping(method=RequestMethod.GET, value="/team/{team_id}/homeground")
-	public CustomJsonUtil getHomeGroundByYear(@PathVariable("team_id") String team_id, @RequestParam("year") String year) {
-		return teamService.getHomeGroundByYear(Integer.parseInt(team_id), Integer.parseInt(year));
-	}
-	
-	
-	@RequestMapping(method = RequestMethod.GET, value="/team/{team_id}/social_media")
-	public CustomJsonUtil getSocialMediaByTeam(@PathVariable("team_id") String team_id) {
-		return teamService.getSocialMediaByTeam(Integer.parseInt(team_id));
-	}
-	
+		
 }

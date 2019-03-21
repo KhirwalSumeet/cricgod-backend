@@ -28,15 +28,15 @@ public class Player {
 	@Column(name="name", nullable = false)
 	private String name;
 	
-	@Column(name="batting_style")
+	@Column(name="batting_style", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private BatStyleEnum battingStyle;
 	
-	@Column(name="bowling_style")
+	@Column(name="bowling_style", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private BowlStyleEnum bowlingStyle;
 	
-	@Column(name="role")
+	@Column(name="role", nullable = false)
 	@Enumerated(EnumType.STRING)
 	private RoleEnum role;
 	

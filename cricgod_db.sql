@@ -7,7 +7,7 @@ drop table if exists team;
 create table if not exists team(
 	id int unsigned auto_increment unique not null,
     name varchar(255) not null,
-	nick_name varchar(255) not null,
+	abbreviation varchar(255) not null,
     primary key (id),
     index tid(id)
 );
@@ -140,9 +140,9 @@ drop table if exists player;
 create table if not exists player(
 	id int unsigned auto_increment unique not null,
     name varchar(255) not null,
-    batting_style enum('LEFT','RIGHT'),
-    bowling_style enum ('RIGHT_FAST', 'LEFT_FAST','RIGHT_MEDIUM', 'LEFT_MEDIUM', 'RIGHT_SPIN', 'LEFT_SPIN'),
-    role enum('BATSMEN','BOWLER','BAT_ALLROUNDER', 'BOWL_ALLROUNDER', 'WICKETKEEPER', 'WK_BATSMEN'),
+    batting_style enum('LEFT','RIGHT') not null,
+    bowling_style enum ('RIGHT_FAST', 'LEFT_FAST','RIGHT_MEDIUM', 'LEFT_MEDIUM', 'RIGHT_SPIN', 'LEFT_SPIN', 'NONE') not null,
+    role enum('BATSMEN','BOWLER','BAT_ALLROUNDER', 'BOWL_ALLROUNDER', 'WICKETKEEPER', 'WK_BATSMEN') not null,
     dob date not null,
     nationality varchar(255) not null,
     primary key (id),
@@ -151,21 +151,21 @@ create table if not exists player(
 
 INSERT INTO player VALUES (1, "Mahendra Singh Dhoni", 'RIGHT', 'RIGHT_SPIN', 'WK_BATSMEN', '1982-01-24', 'India');
 INSERT INTO player VALUES (2, "Virat Kolhi", 'RIGHT', 'RIGHT_SPIN', 'BATSMEN', '1989-03-04', 'India');
-INSERT INTO player VALUES (3, "Rohit Sharma", 'RIGHT', NULL, 'BATSMEN', '1985-07-21', 'India');
+INSERT INTO player VALUES (3, "Rohit Sharma", 'RIGHT', 'NONE', 'BATSMEN', '1985-07-21', 'India');
 INSERT INTO player VALUES (4, "Bhuvneswar Kumar", 'RIGHT', 'RIGHT_FAST', 'BOWLER', '1988-02-17', 'India');
 INSERT INTO player VALUES (5, "Kuldeep Yadav", 'RIGHT', 'RIGHT_SPIN', 'BOWLER', '1990-03-12', 'India');
 INSERT INTO player VALUES (6, "Jasprit Bumrah", 'RIGHT', 'RIGHT_FAST', 'BOWLER', '1985-04-07', 'India');
 INSERT INTO player VALUES (7, "Glenn Maxwell", 'RIGHT', 'RIGHT_SPIN', 'BAT_ALLROUNDER', '1984-05-03', 'Australia');
 INSERT INTO player VALUES (8, "Imran Tahir", 'LEFT', 'LEFT_SPIN', 'BOWLER', '1980-06-18', 'South Africa');
-INSERT INTO player VALUES (9, "Dinesh Karthik", 'RIGHT', NULL, 'WK_BATSMEN', '1990-07-11', 'India');
-INSERT INTO player VALUES (10, "Jos Butler", 'LEFT', NULL, 'WK_BATSMEN', '1986-08-19', 'England');
-INSERT INTO player VALUES (11, "Shikhar Dhawan", 'LEFT', NULL, 'BATSMEN', '1987-09-30', 'India');
+INSERT INTO player VALUES (9, "Dinesh Karthik", 'RIGHT', 'NONE', 'WK_BATSMEN', '1990-07-11', 'India');
+INSERT INTO player VALUES (10, "Jos Butler", 'LEFT', 'NONE', 'WK_BATSMEN', '1986-08-19', 'England');
+INSERT INTO player VALUES (11, "Shikhar Dhawan", 'LEFT', 'NONE', 'BATSMEN', '1987-09-30', 'India');
 INSERT INTO player VALUES (12, "Kane Williamson", 'RIGHT', 'RIGHT_SPIN', 'BATSMEN', '1984-10-31', 'New Zealand');
 INSERT INTO player VALUES (13, "Lungi Ngidi", 'LEFT', 'LEFT_FAST', 'BOWLER', '1991-11-29', 'South Africa');
 INSERT INTO player VALUES (14, "Andrew Tye", 'LEFT', 'RIGHT_FAST', 'BOWLER', '1982-12-14', 'England');
 INSERT INTO player VALUES (15, "Sunil Narine", 'LEFT', 'LEFT_SPIN', 'BOWL_ALLROUNDER', '1986-01-09', 'Srilanka');
 INSERT INTO player VALUES (16, "Hardik Pandya", 'RIGHT', 'RIGHT_MEDIUM', 'BAT_ALLROUNDER', '1990-02-05', 'India');
-INSERT INTO player VALUES (17, "Rishabh Pant", 'RIGHT', NULL, 'WK_BATSMEN', '1996-03-15', 'India');
+INSERT INTO player VALUES (17, "Rishabh Pant", 'RIGHT', 'NONE', 'WK_BATSMEN', '1996-03-15', 'India');
 INSERT INTO player VALUES (18, "Ajinkya Rahane", 'RIGHT', 'RIGHT_SPIN', 'BAT_ALLROUNDER', '1989-06-05', 'India');
 INSERT INTO player VALUES (19, "Rashid Khan", 'RIGHT', 'LEFT_SPIN', 'BOWL_ALLROUNDER', '1993-02-05', 'Bangladesh');
 INSERT INTO player VALUES (20, "Chris Gayle", 'RIGHT', 'RIGHT_SPIN', 'BATSMEN', '1985-10-01', 'West Indies');

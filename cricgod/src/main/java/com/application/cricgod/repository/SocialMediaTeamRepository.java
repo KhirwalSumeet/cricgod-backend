@@ -11,6 +11,6 @@ import com.application.cricgod.entity.SocialMediaTeamMapping;
 public interface SocialMediaTeamRepository extends JpaRepository<SocialMediaTeamMapping, Integer> {
 	
 	@Query("select map from SocialMediaTeamMapping map where map.team.id=?1")
-	List<SocialMediaTeamMapping> getSocialMediaByTeam(int tem_id);
+	List<SocialMediaTeamMapping> getSocialMediaByTeam(int team_id);
 	
 }

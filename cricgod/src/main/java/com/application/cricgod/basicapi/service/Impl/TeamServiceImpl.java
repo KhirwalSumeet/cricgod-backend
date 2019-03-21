@@ -1,5 +1,6 @@
 package com.application.cricgod.basicapi.service.Impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,16 @@ import com.application.cricgod.repository.HomeGroundRepository;
 import com.application.cricgod.repository.PlayerTeamRepository;
 import com.application.cricgod.repository.SocialMediaTeamRepository;
 import com.application.cricgod.repository.TeamRepository;
+import com.application.cricgod.basicapi.beans.TeamDetailsBean;
+import com.application.cricgod.basicapi.beans.TeamRequestFlagsBean;
+import com.application.cricgod.basicapi.helper.TeamHelper;
 import com.application.cricgod.basicapi.service.TeamService;
 import com.application.cricgod.util.CustomJsonUtil;
 
 
+/**
+ * This is implementation for Team related APIs service interface
+ */
 @Service
 public class TeamServiceImpl implements TeamService {
 
@@ -37,15 +44,52 @@ public class TeamServiceImpl implements TeamService {
 	@Autowired
 	private SocialMediaTeamRepository socialMediaTeamRepository;
 	
+	@Autowired 
+	private TeamHelper teamHelper;
+	
 	@Autowired
 	private CustomJsonUtil customJsonResponse;
 	
 	
+	/**
+	 * Retrieves specified details of the team of a particular year
+	 * @teamDetailsFlags : Flags of different team details mentioning whether they are needed or not
+	 * @year : Year to be searched in
+	 * 
+	 * return CustomJsonUtil : Custom json response of requested details of a all teams in the given year
+	 */
 	@Override
-	public CustomJsonUtil getAllTeams() {
+	public CustomJsonUtil getAllTeamDetails(TeamRequestFlagsBean teamDetailsFlags, int year) {
+		
 		List<Team> teams = teamRepository.findAll();
-		if(teams != null) {
-			customJsonResponse.setParams(teams, "RESP_SUCCESS");
+		List<TeamDetailsBean> allTeamDetails = new ArrayList<TeamDetailsBean>();
+		for(Team team : teams) {
+			if(team != null) {
+				TeamDetailsBean teamDetails = getParticularTeamDetails(team, teamDetailsFlags, year);
+				allTeamDetails.add(teamDetails);
+			}
+		}
+		customJsonResponse.setParams(allTeamDetails, "RESP_SUCCESS");
+		return customJsonResponse;	
+	}
+	
+	
+	/**
+	 * Retrieves specified details of the team of a particular year
+	 * @team_id : Id of the team
+	 * @teamDetailsFlags : Flags of different team details mentioning whether they are needed or not
+	 * @year : Year to be searched in
+	 * 
+	 * return CustomJsonUtil : Custom json response of requested details of a particular team in the given year
+	 */
+	@Override
+	public CustomJsonUtil getTeamDetails(int team_id, TeamRequestFlagsBean teamDetailsFlags, int year) {
+		
+		Team team = teamRepository.getTeamById(team_id);
+		
+		if(team != null) {
+			TeamDetailsBean teamDetails = getParticularTeamDetails(team, teamDetailsFlags, year);
+			customJsonResponse.setParams(teamDetails, "RESP_SUCCESS");
 		}
 		else {
 			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
@@ -55,99 +99,44 @@ public class TeamServiceImpl implements TeamService {
 	}
 	
 	
-	@Override
-	public CustomJsonUtil getTeamById(int team_id) {
-		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) {
-			customJsonResponse.setParams(teamInfo, "RESP_SUCCESS");
+	/**
+	 * Retrieves specified details of the team of a particular year
+	 * @team : Entity of the team
+	 * @teamDetailsFlags : Flags of different team details mentioning whether they are needed or not
+	 * @year : Year to be searched in
+	 * 
+	 * return TeamDetailsBean : Requested details of a particular team in the given year
+	 */
+	public TeamDetailsBean getParticularTeamDetails(Team team, TeamRequestFlagsBean teamDetailsFlags, int year) {
+		
+		int team_id = team.getId();
+		List<Player> squad = null;
+		List<Fixture> fixtures = null;
+		List<SocialMediaTeamMapping> socialMedias = null;
+		Stadium homeGround = null;
+		String owner = null;
+		
+		if(!teamDetailsFlags.isTeamNameFlag()){
+			team = null;
 		}
-		else {
-			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
+		if(teamDetailsFlags.isSquadDetailsFlag()) {
+			squad = playerTeamRepository.getSquadByYear(team_id, year);
+		}
+		if(teamDetailsFlags.isFixtureDetailsFlag()) {
+			fixtures = fixtureRepository.getAllFixturesByTeam(team_id, year);
+		}
+		if(teamDetailsFlags.isSocialMediaDetailsFlag()) {
+			socialMedias = socialMediaTeamRepository.getSocialMediaByTeam(team_id);
+		}
+		if(teamDetailsFlags.isHomeGroundDetailsFlag()) {
+			homeGround = homeGroundRepository.getHomeGroundByYear(team_id, year);
+		}
+		if(teamDetailsFlags.isOwnerDetailsFlag()) {
+			owner = "VVS Laxman";
 		}
 		
-		return customJsonResponse;
+		return teamHelper.mapTeamDetails(team, squad, fixtures, socialMedias, homeGround, owner);		
 	}
-	
-	
-	@Override
-	public CustomJsonUtil getSquadByYear(int team_id, int year) {
-		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) {
-			List<Player> squad = playerTeamRepository.getSquadByYear(team_id, year);
-			if(squad != null) {
-				customJsonResponse.setParams(squad, "RESP_SUCCESS");
-			}
-			else {
-				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_SQUAD");
-			}
-		}
-		else {
-			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
-		}
-		
-		return customJsonResponse;
-	}
-	
-	
-	@Override
-	public CustomJsonUtil getFixturesByTeam(int team_id, int year) {
-		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) {
-			List<Fixture> fixtures = fixtureRepository.getAllFixturesByTeam(team_id, year);
-			if(fixtures != null) {
-				customJsonResponse.setParams(fixtures, "RESP_SUCCESS");
-			}
-			else {
-				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_FIXTURES");
-			}
-		}
-		else {
-			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
-		}
-		
-		return customJsonResponse;
-	}
-	
-	
-	@Override
-	public CustomJsonUtil getHomeGroundByYear(int team_id, int year) {
-		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) {
-			List<Stadium> homeground = homeGroundRepository.getHomeGroundByYear(team_id, year);
-			if (homeground != null) {
-				customJsonResponse.setParams(homeground, "RESP_SUCCESS");
-			}
-			else {
-				customJsonResponse.setParams(null, "RESP_FAILURE_TEAM_HOMEGROUND");
-			}
-		}
-		else {
-			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
-		}
-				
-		return customJsonResponse;
-	}
-	
-	
-	@Override
-	public CustomJsonUtil getSocialMediaByTeam(int team_id) {
-		Team teamInfo = teamRepository.getTeamById(team_id);
-		if(teamInfo != null) {
-			List<SocialMediaTeamMapping> socialMedia = socialMediaTeamRepository.getSocialMediaByTeam(team_id);
-			if(socialMedia != null) {
-				customJsonResponse.setParams(socialMedia, "RESP_SUCCESS");
-			}
-			else {
-				customJsonResponse.setParams(null, "RESP_FAILURE_SOCIALMEDIA_TEAM");
-			}
-		}
-		else {
-			customJsonResponse.setParams(null, "RESP_FAILURE_TEAM");
-		}
-		
-		return customJsonResponse;
-	}
-	
 	
 	
 }

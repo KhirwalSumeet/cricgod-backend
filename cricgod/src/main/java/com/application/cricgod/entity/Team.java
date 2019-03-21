@@ -23,8 +23,8 @@ public class Team {
 	@Column(name = "name", nullable = false)
     private String name;
 	
-	@Column(name = "nick_name", nullable = false)
-    private String nickName;
+	@Column(name = "abbreviation", nullable = false)
+    private String abbreviation;
 	
 	
 	public int getId() {
@@ -43,12 +43,12 @@ public class Team {
 	    this.name = name;
 	}
 
-	public String getNickName() {
-		return nickName;
+	public String getAbbreviation() {
+		return abbreviation;
 	}
 
-	public void setNickName(String nickName) {
-		this.nickName = nickName;
+	public void setAbbreviation(String abbreviation) {
+		this.abbreviation = abbreviation;
 	}
 	
 }

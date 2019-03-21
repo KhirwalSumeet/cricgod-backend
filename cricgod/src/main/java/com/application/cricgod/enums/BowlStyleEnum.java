@@ -6,5 +6,6 @@ public enum BowlStyleEnum {
 	RIGHT_MEDIUM,
 	LEFT_MEDIUM,
 	RIGHT_SPIN,
-	LEFT_SPIN
+	LEFT_SPIN,
+	NONE
 }

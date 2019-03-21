@@ -1,19 +1,16 @@
 package com.application.cricgod.basicapi.service;
 
+import com.application.cricgod.basicapi.beans.TeamRequestFlagsBean;
 import com.application.cricgod.util.CustomJsonUtil;
 
+
+/**
+ * This is interface for Team related APIs service class
+ */
 public interface TeamService {
 	
-	CustomJsonUtil getAllTeams();
+	CustomJsonUtil getAllTeamDetails(TeamRequestFlagsBean teamDetailsFlags, int year);
 	
-	CustomJsonUtil getTeamById(int team_id);
-	
-	CustomJsonUtil getSquadByYear(int team_id, int year);
-	
-	CustomJsonUtil getFixturesByTeam(int team_id, int year);
-	
-	CustomJsonUtil getHomeGroundByYear(int team_id, int year);
-	
-	CustomJsonUtil getSocialMediaByTeam(int team_id);
-	
+	CustomJsonUtil getTeamDetails(int team_id, TeamRequestFlagsBean teamDetailsFlags, int year);
+			
 }
