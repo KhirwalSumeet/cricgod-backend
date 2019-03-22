@@ -214,8 +214,8 @@ create table if not exists toss(
     winner_id int unsigned not null,
     decision enum('bat','field'),
     primary key (id),
-    foreign key (caller_id) references team(id),
-    foreign key (winner_id) references team(id),
+    foreign key (caller_id) references player(id),
+    foreign key (winner_id) references player(id),
     index tossid(caller_id, winner_id)
 );
 
@@ -432,7 +432,7 @@ create table if not exists overs(
     ones int not null,
 	twos int not null,
 	threes int not null,
-	four int not null,
+	fours int not null,
 	fives int not null,
 	sixes int not null,
 	primary key (id),
